@@ -37,7 +37,7 @@ def rotate(head, k):
         return head  
     
     # Find the new tail and new head
-    current.next = head  # Connect the tail to the head to form a circular list
+    current.next = head  # Connect the tail to the head
     new_tail_pos = length - k - 1
     new_tail = head
     for _ in range(new_tail_pos):
@@ -48,9 +48,6 @@ def rotate(head, k):
     new_tail.next = None
     
     return new_head
-
-
-
 
 # Input list: a->b->c->d->e
 # Rotate by 1
