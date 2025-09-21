@@ -18,9 +18,38 @@ class Node:
         except RecursionError:
             raise Exception("Linked list has a cycle or is too large")
 
+
 def rotate(head, k):
-    # Your implementation here!
-    pass
+    # empty list or a single node
+    if not head or not head.next:
+        return head
+
+    # Find the length of the linked list
+    length = 1
+    current = head
+    while current.next:
+        length += 1
+        current = current.next
+    
+    # No need to rotate if k is 0 or a multiple of the list length
+    k = k % length
+    if k == 0:
+        return head  
+    
+    # Find the new tail and new head
+    current.next = head  # Connect the tail to the head to form a circular list
+    new_tail_pos = length - k - 1
+    new_tail = head
+    for _ in range(new_tail_pos):
+        new_tail = new_tail.next
+    
+    # Update the new head 
+    new_head = new_tail.next
+    new_tail.next = None
+    
+    return new_head
+
+
 
 
 # Input list: a->b->c->d->e
